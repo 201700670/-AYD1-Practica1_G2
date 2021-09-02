@@ -3,8 +3,6 @@ Implementación y manejo de control de versiones
 Interfaz Grafica - 201602421 Diego Vasquez
 La interfaz grafica, es una ventana que contara con 2 pestañas una para las operaciones basicas y otra para las operaciones avanzadas.
 
-![Alt text](http://full/path/to/img.jpg "Optional title")
-
 En la pestaña de Operaciones Basicas, se mostrarn 2 campos de texto donde se introduciran los 2 operadores que se utilizaran y debajo de estos estan los 6 botones que representan las operaciones de:
 
 - Suma
