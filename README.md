@@ -20,3 +20,8 @@ Para la otra pestaña, Operaciones Avanzadas, esta se encuentra dividida en 2 se
 >- Cinthya Andrea Palomo Galvez 201700670
 >- Diego Vasquez 201602421
 
+Clase HistorialOp
+Se creó una clase para guardar en una lista el historial de cada operación y su debido resultado.
+
+Clase Historial
+Este servirá para crear el historial con el .jar de Itext. 
