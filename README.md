@@ -6,6 +6,7 @@ La feature resuelve errores sintacticos automaticamente antes de entrar al motor
 * Resuelve la funcion f(x) = 0, ej. `-20*X + 5 = 4*X -> -20*X + 5 - 4*X = 0`
 
 * Aldo Rigoberto Hernandez Avila
+* Luis Enrique Patal Ajzac
 >- Cinthya Andrea Palomo Galvez 201700670
 >- Diego Vasquez 201602421
 - Suma
@@ -20,3 +21,7 @@ Clase HistorialOp
 Se creó una clase para guardar en una lista el historial de cada operación y su debido resultado.
 Clase Historial
 Este servirá para crear el historial con el .jar de Itext. 
+
+<b>Feature Variables_201408562</b>
+
+Esta característica permite asignar valores enteros o reales a literales para que estas puedan ser usadas dentro de una expresión. Ejemplo: a = 5, b = 10, c = 30.

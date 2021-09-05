@@ -1,7 +1,9 @@
 package practica1_grupo2;
+import java.util.LinkedList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import org.mariuszgromada.math.mxparser.Argument;
+import org.mariuszgromada.math.mxparser.Constant;
 import org.mariuszgromada.math.mxparser.Expression;
 /**
  *
@@ -9,13 +11,16 @@ import org.mariuszgromada.math.mxparser.Expression;
  */
 public class Interfaz extends javax.swing.JFrame {
 
+    LinkedList<Constant> valores;
+    
     /**
      * Creates new form Interfaz
      */
     public boolean x = true;
     public Variable first;
     public Variable last;
-    public Interfaz() {
+    public Interfaz() {        
+        valores = new LinkedList<>();
         initComponents();
     }
 
@@ -54,6 +59,7 @@ public class Interfaz extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        etqResultadoAsig = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,7 +141,7 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(RaizN)
                             .addComponent(Potencia)
                             .addComponent(Division))))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +191,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jList1);
 
-        jLabel5.setText("Ingresar Ecuacion:");
+        jLabel5.setText("Ingresar expresión:");
 
         jButton3.setText("Resolver Ecuacion");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +199,9 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        etqResultadoAsig.setText("Resultado: ");
+        etqResultadoAsig.setName(""); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -210,17 +219,19 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(jLabel6))
                     .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField4)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(etqResultadoAsig))
                             .addComponent(jButton3))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +258,9 @@ public class Interfaz extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etqResultadoAsig))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -314,12 +327,28 @@ public class Interfaz extends javax.swing.JFrame {
         for(int i = 0; i<vari.length; i++){
             s.addElement(vari[i].variable + " = " + vari[i].valor);
             System.out.println(vari[i].variable + " = " + vari[i].valor);
+            // Asignacion de variables            
+            //variables.add(vari[i].variable + " = " + vari[i].valor);
+            valores.add(new Constant(vari[i].variable, vari[i].valor));
         }jList1.setModel(s);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        String strExpresion = jTextField5.getText();
+        if(strExpresion == null || strExpresion.length() == 0){
+            JOptionPane.showMessageDialog(this, "Debe ingresar una expresión a evaluar", "Error", JOptionPane.WARNING_MESSAGE);
+        }else {
+            Asignacion asignacion = new Asignacion(valores, jTextField5.getText());            
+            double resultado = asignacion.getResultado();            
+            if (resultado != Double.NaN) {
+                etqResultadoAsig.setText("Resultado: " + "\n" + String.valueOf(resultado));
+            } else {
+                etqResultadoAsig.setText("#Error#");
+            }            
+            valores.clear();                                    
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -371,6 +400,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton RaizN;
     private javax.swing.JButton Resta;
     private javax.swing.JButton Suma;
+    private javax.swing.JLabel etqResultadoAsig;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
