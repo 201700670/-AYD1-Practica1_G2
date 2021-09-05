@@ -1,4 +1,6 @@
 package practica1_grupo2;
+import com.sun.glass.events.KeyEvent;
+import java.awt.Cursor;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import org.mariuszgromada.math.mxparser.Argument;
@@ -31,15 +33,17 @@ public class Interfaz extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        textFieldOperacion = new javax.swing.JTextField();
         Suma = new javax.swing.JButton();
         Resta = new javax.swing.JButton();
         Multiplicacion = new javax.swing.JButton();
         Division = new javax.swing.JButton();
         Potencia = new javax.swing.JButton();
         RaizN = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        labelResultado = new javax.swing.JLabel();
+        parAbierto = new javax.swing.JButton();
+        parCerrado = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -63,9 +67,13 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("1er Operador(x):");
+        jLabel1.setText("Operacion:");
 
-        jLabel2.setText("2do Operador(y):");
+        textFieldOperacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldOperacionKeyPressed(evt);
+            }
+        });
 
         Suma.setText("x + y");
         Suma.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +117,29 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Calcular");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        labelResultado.setText("Resultado");
+
+        parAbierto.setText("(");
+        parAbierto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parAbiertoActionPerformed(evt);
+            }
+        });
+
+        parCerrado.setText(")");
+        parCerrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parCerradoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,26 +147,34 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField2)))
+                    .addComponent(labelResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Suma)
-                            .addComponent(Resta)
-                            .addComponent(Multiplicacion))
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RaizN)
-                            .addComponent(Potencia)
-                            .addComponent(Division))))
-                .addContainerGap(135, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldOperacion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Suma)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Division)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Resta))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(RaizN)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Multiplicacion)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(parAbierto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Potencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(parCerrado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 31, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,24 +182,24 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelResultado)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Suma)
-                    .addComponent(Division))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Division)
                     .addComponent(Resta)
                     .addComponent(Potencia))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RaizN)
                     .addComponent(Multiplicacion)
-                    .addComponent(RaizN))
-                .addContainerGap(141, Short.MAX_VALUE))
+                    .addComponent(parAbierto)
+                    .addComponent(parCerrado))
+                .addGap(61, 61, 61)
+                .addComponent(jButton4)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Operaciones Basicas", jPanel1);
@@ -270,27 +309,28 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SumaActionPerformed
-        // TODO add your handling code here:
+        this.agregarOp("+"); //agregar el simbolo de suma a la operacion
     }//GEN-LAST:event_SumaActionPerformed
 
     private void RestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestaActionPerformed
-        // TODO add your handling code here:
+        this.agregarOp("-"); //agregar el simbolo de resta a la operacion
     }//GEN-LAST:event_RestaActionPerformed
 
     private void MultiplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MultiplicacionActionPerformed
-        // TODO add your handling code here:
+        this.agregarOp("*"); //agregar el simbolo de multiplicacion a la operacion
     }//GEN-LAST:event_MultiplicacionActionPerformed
 
     private void DivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DivisionActionPerformed
-        // TODO add your handling code here:
+        this.agregarOp("/"); //agregar el simbolo de divicion a la operacion
     }//GEN-LAST:event_DivisionActionPerformed
 
     private void PotenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PotenciaActionPerformed
-        // TODO add your handling code here:
+        this.agregarOp("^"); //agregar el simbolo de potencia a la operacion
     }//GEN-LAST:event_PotenciaActionPerformed
 
     private void RaizNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaizNActionPerformed
-        // TODO add your handling code here:
+        this.agregarOp("^(1/)"); //agregar el simbolo de raiz a la operacion
+        this.textFieldOperacion.setCaretPosition(textFieldOperacion.getText().length()-1); //setear el cursos a una posicion antes del parentesis de cierre de la raiz
     }//GEN-LAST:event_RaizNActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
@@ -326,9 +366,37 @@ public class Interfaz extends javax.swing.JFrame {
         // Despeje de ecuaciones
         Ecuaciones eq = new Ecuaciones(this.jTextField3.getText());
         this.jLabel6.setText("X = " + eq.getValue());
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.realizarOperacion(); //realizar la operacion ingresada
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void parAbiertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parAbiertoActionPerformed
+        this.agregarOp("("); //agregar el simbolo de parentesis abierto a la operacion
+    }//GEN-LAST:event_parAbiertoActionPerformed
+
+    private void parCerradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parCerradoActionPerformed
+        this.agregarOp(")"); //agregar el simbolo de parentesis cerrado a la operacion
+    }//GEN-LAST:event_parCerradoActionPerformed
+
+    private void textFieldOperacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldOperacionKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(this.textFieldOperacion.getCaretPosition()==textFieldOperacion.getText().length())
+                this.realizarOperacion();
+            else this.textFieldOperacion.setCaretPosition(textFieldOperacion.getText().length());
+        }
+    }//GEN-LAST:event_textFieldOperacionKeyPressed
+
+    private void agregarOp(String op){ //metodo para agregar un simbolo al input
+        this.textFieldOperacion.setText(this.textFieldOperacion.getText().toString()+op); //extraer el texto concatena
+        textFieldOperacion.requestFocus();       
+    }
+    
+    private void realizarOperacion(){
+        String cadenaOperacion = this.textFieldOperacion.getText().toString();
+        this.labelResultado.setText(Calculador.operar(cadenaOperacion));
+    }
     /**
      * @param args the command line arguments
      */
@@ -374,8 +442,8 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -386,10 +454,12 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel labelResultado;
+    private javax.swing.JButton parAbierto;
+    private javax.swing.JButton parCerrado;
+    private javax.swing.JTextField textFieldOperacion;
     // End of variables declaration//GEN-END:variables
 }
