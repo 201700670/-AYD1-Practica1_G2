@@ -32,6 +32,14 @@ public class Ecuaciones {
         this.normalizedString = leftExp.trim() + rightExp.trim();
     }
     
+    public Ecuaciones(){
+        
+    }
+    
+    public String parceText(String expression){
+        return this.addMultiplySign(expression);
+    }
+    
     private String addMultiplySign(String exp){
      
         Pattern p = Pattern.compile("(\\d|\\)|[A-Z])(\\(|[A-Z])");
