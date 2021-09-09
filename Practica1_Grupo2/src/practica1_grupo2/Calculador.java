@@ -12,8 +12,8 @@ import org.mariuszgromada.math.mxparser.*;
  */
 public class Calculador {
     public static String operar(String texto){
-        Expression exp = new Expression(texto);
-        
+        String parceText = new Ecuaciones().parceText(texto);
+        Expression exp = new Expression(parceText);
         return(String.valueOf(exp.calculate()));
     }
 }
