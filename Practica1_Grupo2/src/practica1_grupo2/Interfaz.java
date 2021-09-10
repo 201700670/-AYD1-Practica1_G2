@@ -463,8 +463,12 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Despeje de ecuaciones
-        Ecuaciones eq = new Ecuaciones(this.jTextField3.getText());
-        this.jLabel6.setText("X = " + eq.getValue());
+        String cadenaInicial = this.jTextField3.getText();
+        Ecuaciones eq = new Ecuaciones(cadenaInicial);
+        double result = eq.getValue();
+        this.jLabel6.setText("X = " + result);
+        this.lista.add(new HistorialOp(cadenaInicial, String.valueOf(result)));
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

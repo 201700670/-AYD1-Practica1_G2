@@ -51,7 +51,7 @@ public class Historial {
         PdfPTable tabla = new PdfPTable(3);
         tabla.addCell("ID");
         tabla.addCell("NOMBRE");
-        tabla.addCell("TELEFONO");
+        tabla.addCell("RESULTADO");
         
         for(int i = 0 ; i < lista.size() ; i++) {
             tabla.addCell("" + i);

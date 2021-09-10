@@ -71,7 +71,12 @@ public class Ecuaciones {
     }
 
     public double getValue(){
-        return findValue(10000);
+        try {
+            return findValue(10000);
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return NaN;
+        }        
     }
     
     private double findValue(int bounder){
