@@ -484,7 +484,6 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        lista.add(new HistorialOp("5+8", "2"));
         try {
             // TODO add your handling code here:
             Historial.crearPDF(lista);
