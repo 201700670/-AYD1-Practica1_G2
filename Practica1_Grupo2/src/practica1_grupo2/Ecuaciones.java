@@ -32,6 +32,14 @@ public class Ecuaciones {
         this.normalizedString = leftExp.trim() + rightExp.trim();
     }
     
+    public Ecuaciones(){
+        
+    }
+    
+    public String parceText(String expression){
+        return this.addMultiplySign(expression);
+    }
+    
     private String addMultiplySign(String exp){
      
         Pattern p = Pattern.compile("(\\d|\\)|[A-Z])(\\(|[A-Z])");
@@ -63,7 +71,12 @@ public class Ecuaciones {
     }
 
     public double getValue(){
-        return findValue(10000);
+        try {
+            return findValue(10000);
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return NaN;
+        }        
     }
     
     private double findValue(int bounder){

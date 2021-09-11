@@ -457,14 +457,19 @@ public class Interfaz extends javax.swing.JFrame {
                 etqResultadoAsig.setText("#Error#");
             }            
             valores.clear();                                    
+            this.lista.add(new HistorialOp(strExpresion, String.valueOf(resultado)));
         }
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Despeje de ecuaciones
-        Ecuaciones eq = new Ecuaciones(this.jTextField3.getText());
-        this.jLabel6.setText("X = " + eq.getValue());
+        String cadenaInicial = this.jTextField3.getText();
+        Ecuaciones eq = new Ecuaciones(cadenaInicial);
+        double result = eq.getValue();
+        this.jLabel6.setText("X = " + result);
+        this.lista.add(new HistorialOp(cadenaInicial, String.valueOf(result)));
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -480,7 +485,6 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        lista.add(new HistorialOp("5+8", "2"));
         try {
             // TODO add your handling code here:
             Historial.crearPDF(lista);
@@ -520,13 +524,15 @@ public class Interfaz extends javax.swing.JFrame {
     
     private void realizarOperacion(){
         String cadenaOperacion = this.textFieldOperacion.getText().toString();
-        this.labelResultado.setText(Calculador.operar(cadenaOperacion));
+        String resultado = Calculador.operar(cadenaOperacion);
+        this.labelResultado.setText(resultado);
+        this.lista.add(new HistorialOp(cadenaOperacion, resultado));
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
