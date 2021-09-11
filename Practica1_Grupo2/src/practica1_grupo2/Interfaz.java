@@ -457,6 +457,7 @@ public class Interfaz extends javax.swing.JFrame {
                 etqResultadoAsig.setText("#Error#");
             }            
             valores.clear();                                    
+            this.lista.add(new HistorialOp(strExpresion, String.valueOf(resultado)));
         }
         
     }//GEN-LAST:event_jButton3ActionPerformed
