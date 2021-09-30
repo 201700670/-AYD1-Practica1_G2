@@ -11,6 +11,7 @@ import org.mariuszgromada.math.mxparser.*;
  * @author teval
  */
 public class Calculador {
+    
     public static String operar(String texto){
         String parceText = new Ecuaciones().parceText(texto);
         Expression exp = new Expression(parceText);
