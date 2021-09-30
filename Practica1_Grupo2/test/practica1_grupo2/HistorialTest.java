@@ -76,4 +76,21 @@ public class HistorialTest{
         System.out.println("Operaciones "+expectedResult[0].getResultado()+" Resultados "+(expectedResult[0].getResultado()== result[0].getResultado()));
         assertEquals(expectedResult[0].getResultado(), result[0].getResultado());
     }
+    
+    /**
+     * Testea la clase HistorialOp para verificar si no hay datos y esta en null
+     * */
+    @Test
+    public void AssertNull(){
+        ecuaciones= null;
+        HistorialOp[] expectedResult= null;
+               
+        System.out.println("OPERACIONES NULL SI SON IGUALES== Espectativa "+ ecuaciones+" Resultado "+ expectedResult);
+        //resultado con Array obteniendo operacion
+        assertNull(ecuaciones);
+        //resultado con Array obteniendo resultado
+        assertNull(expectedResult);
+        /// same null
+        assertSame(expectedResult, ecuaciones);
+    }
 }
